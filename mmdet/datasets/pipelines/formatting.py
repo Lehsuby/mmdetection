@@ -240,7 +240,8 @@ class DefaultFormatBundle:
                 cpu_only=True)
         if 'gt_semantic_seg' in results:
             results['gt_semantic_seg'] = DC(
-                to_tensor(results['gt_semantic_seg'][None, ...]),
+                to_tensor(results['gt_semantic_seg'][None,
+                                                     ...].astype(np.int64)),
                 padding_value=self.pad_val['seg'],
                 stack=True)
         return results
